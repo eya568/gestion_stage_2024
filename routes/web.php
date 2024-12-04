@@ -83,3 +83,4 @@ Route::get('/soutenances/perfectionnement', [SoutenanceController::class, 'showP
 Route::post('/soutenances', [SoutenanceController::class, 'store'])->name('soutenances.store');
 Route::get('/soutenances/{id}/edit', [SoutenanceController::class, 'edit'])->name('soutenances.edit');
 Route::put('/soutenances/{id}', [SoutenanceController::class, 'update'])->name('soutenances.update');
+Route::get('/soutenances/pdf', [SoutenanceController::class, 'exportPdf'])->name('soutenances.pdf');

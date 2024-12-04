@@ -68,9 +68,13 @@
           <div class="table-container">
             <div class="header d-flex justify-content-between align-items-center">
               <h2>Liste des Soutenances En PFE</h2>
-              <button class="btn btn-warning btn-sm" onclick="imprimerPDF()">
-                <i class="bi bi-printer"></i> Imprimer en PDF
-              </button>
+              
+            <button class="btn btn-warning btn-sm">
+              <a href="{{ route('soutenances.pdf') }}">Télécharger en PDF</a>
+          </button>
+            
+            
+            
             </div>
             <div class="search-bar my-3">
               <input type="text" class="form-control w-25" id="searchInput" placeholder="Rechercher..." onkeyup="rechercher()" />
@@ -587,6 +591,16 @@ const soutenanceId = row.getAttribute('data-id'); // Access the data-id attribut
     }
   </script>
 
+<script>
+  function generatePDF() {
+      var doc = new jsPDF();
+      doc.autoTable({ 
+          html: '.table',
+          startY: 20
+      });
+      doc.save('soutenances.pdf');
+  }
+</script>
 
 
 </body>

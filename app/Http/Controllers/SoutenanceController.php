@@ -8,9 +8,16 @@ use App\Models\Enseignant;
 use App\Models\Soutenance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class SoutenanceController extends Controller
 {
+    public function exportPdf()
+{
+    $soutenances = Soutenance::all(); // Fetch all soutenances
+
+    $pdf = Pdf::loadView('pdf.soutenances', ['soutenances' => $soutenances]); 
+    return $pdf->download('soutenances.pdf'); 
+}
     public function showPFE()
     {
         $soutenances = Soutenance::where('type', 'PFE')->get();
@@ -249,5 +256,6 @@ public function update(Request $request, $id)
         return back()->with('error',  'Erreur lors de la mise à jour de la soutenance.');
     }
 }
+
 
 }
